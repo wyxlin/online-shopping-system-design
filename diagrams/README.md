@@ -1,10 +1,10 @@
 ## Architecture Diagrams
 
 ### System Context Diagram
-![System Context](diagrams/system-context.png)
+![System Context](system-context.png)
 
 ### Container Diagram
-![Container Diagram](diagrams/container-diagram.png)
+![Container Diagram](container-diagram.png)
 
 ### Deployment Diagram
-![Deployment Diagram](diagrams/deployment-diagram.png)
+![Deployment Diagram](deployment-diagram.png)
