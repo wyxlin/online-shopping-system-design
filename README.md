@@ -13,7 +13,7 @@ The project focuses on practical software engineering concerns such as system de
 The system is documented using three C4 views:
 
 * **System Context Diagram** – shows how users interact with the platform and external systems
-* **Container Diagram** – illustrates internal components such as web app, mobile app, API layer, and database
+* **Container Diagram** – illustrates internal components such as the web app, mobile app, API layer, and database
 * **Deployment Diagram** – describes infrastructure and runtime deployment
 
 See [`diagrams/`](./diagrams) for architecture diagrams.
@@ -24,7 +24,7 @@ See [`diagrams/`](./diagrams) for architecture diagrams.
 * **Mobile Application** – mobile client for accessing the platform
 * **API Layer** – handles business logic and client requests
 * **Database** – stores users, products, and order data
-* **External Services**:
+* **External Services**
 
   * Payment provider
   * Email service
@@ -58,7 +58,6 @@ See [`api/`](./api):
 ```text
 online-shopping-system-design/
 ├── api/         # API interaction examples
-├── assets/      # Optional supporting assets
 ├── diagrams/    # C4 architecture diagrams
 ├── docs/        # Design documentation
 ├── examples/    # Business workflow examples
@@ -69,7 +68,7 @@ online-shopping-system-design/
 
 * Provide a clear and scalable architecture for an online shopping platform
 * Demonstrate integration with external services
-* Highlight important quality attributes and engineering trade-offs
+* Highlight key quality attributes and engineering trade-offs
 * Show how design artifacts connect to business workflows and API interaction
 
 ## Purpose
