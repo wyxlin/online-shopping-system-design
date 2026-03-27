@@ -2,86 +2,75 @@
 
 A system design case study for a scalable online shopping platform that supports web and mobile clients, secure checkout, and integration with external services such as payment, email, and delivery.
 
----
-
 ## Overview
 
-This project presents the architecture of an online shopping system designed using the C4 model. It demonstrates how a modern e-commerce platform can be structured to handle user interactions, backend processing, and third-party integrations.
+This repository presents the high-level design of an online shopping system using the C4 model. It shows how a modern e-commerce platform can be structured to support user-facing applications, backend services, external integrations, and deployment planning.
 
-The design focuses on practical software engineering concerns including system decomposition, API boundaries, external dependencies, and deployment strategy.
-
----
+The project focuses on practical software engineering concerns such as system decomposition, quality attributes, design trade-offs, client-server interaction, and end-to-end business workflows.
 
 ## Architecture
 
-The system is modeled using the C4 approach:
+The system is documented using three C4 views:
 
 * **System Context Diagram** – shows how users interact with the platform and external systems
-* **Container Diagram** – illustrates internal components such as web app, mobile app, API, and database
-* **Deployment Diagram** – describes infrastructure and runtime environment
+* **Container Diagram** – illustrates internal components such as web app, mobile app, API layer, and database
+* **Deployment Diagram** – describes infrastructure and runtime deployment
 
-Architecture diagrams can be found in the [`diagrams/`](./diagrams) folder.
-
----
+See [`diagrams/`](./diagrams) for architecture diagrams.
 
 ## Key Components
 
-* **Web Application (SPA)** – user interface for browsing and checkout
+* **Web Application (SPA)** – user interface for browsing products and checkout
 * **Mobile Application** – mobile client for accessing the platform
-* **API Layer** - handles business logic and client requests
-* **Database** - stores users, products, and order data
-* **External Services** - payment provider, Email service, Delivery/logistics system
+* **API Layer** – handles business logic and client requests
+* **Database** – stores users, products, and order data
+* **External Services**:
 
----
+  * Payment provider
+  * Email service
+  * Delivery / logistics system
 
-## Quality Attributes
+## Design Documentation
 
-This system is designed with the following key quality attributs:
+Detailed design documents are available in [`docs/`](./docs):
 
-* **Performance** - supports concurrent user requests with acceptable response time
-* **Confidentiality** - protests user data protects user data through secure communication and authentication
-* **Recoverability** - ensures the system can recover from failures such as server downtime or network issues
-
-Detailed scenarios and analysis can be found in docs/quality-attributes.md.
-
----
+* [`architecture.md`](./docs/architecture.md) – system structure, core components, and deployment overview
+* [`quality-attributes.md`](./docs/quality-attributes.md) – performance, confidentiality, and recoverability requirements
+* [`trade-offs.md`](./docs/trade-offs.md) – key engineering decisions and architectural trade-offs
 
 ## Example Workflows
 
-The repository includes key business flows to illustrate how the system behaves:
+Key system behavior is described in [`examples/`](./examples):
 
-* **Checkout process** - examples/checkout-flow.md
-* **Order lifecycle** → examples/order-lifecycle.md
-
----
+* [`checkout-flow.md`](./examples/checkout-flow.md) – end-to-end checkout process
+* [`order-lifecycle.md`](./examples/order-lifecycle.md) – order states from creation to completion
 
 ## API Design
 
-This project includes a lightweight API design to demonstrate client-server interaction:
+This project includes lightweight API examples to illustrate client-server interaction.
 
-* **Sample requests and responses** - api/sample-requests.md
-* **OpenAPI specification** - api/openapi.yaml
+See [`api/`](./api):
 
----
+* [`sample-requests.md`](./api/sample-requests.md) – example API requests and responses for products, cart, checkout, and orders
 
 ## Repository Structure
 
-├── docs/ # Design documentation 
-├── diagrams/ # Architecture diagrams (C4 model) 
-├── api/ # API design (OpenAPI / examples) 
-├── examples/ # Business flow scenarios 
-├── assets/ # Images used in README
-
----
+```text
+online-shopping-system-design/
+├── api/         # API interaction examples
+├── assets/      # Optional supporting assets
+├── diagrams/    # C4 architecture diagrams
+├── docs/        # Design documentation
+├── examples/    # Business workflow examples
+└── README.md
+```
 
 ## Design Goals
 
-* Provide a clear and scalable system architecture
+* Provide a clear and scalable architecture for an online shopping platform
 * Demonstrate integration with external services
-* Ensure maintainability and extensibility
-* Highlight key engineering trade-offs and design decisions
-
----
+* Highlight important quality attributes and engineering trade-offs
+* Show how design artifacts connect to business workflows and API interaction
 
 ## Purpose
 
