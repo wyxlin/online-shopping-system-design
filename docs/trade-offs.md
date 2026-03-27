@@ -1,109 +1,113 @@
 # Design Trade-offs
 
-This document outlines the key design trade-offs made in the architecture of the online shopping system.
+This document discusses example design trade-offs for an online shopping system.
+
+The goal is not to claim that a full implementation was built, but to show how common architecture choices can be compared at a high level during the design process.
 
 ---
 
-## Monolithic API vs Microservices
+## Centralized API Layer vs Microservices
 
-### Decision
+### Example Decision
 
-The system uses a centralized API layer instead of a microservices architecture.
+For a learning-oriented design, it is often easier to start with a centralized API layer rather than a full microservices architecture.
 
 ### Trade-off
 
-* **Pros**:
+**Pros:**
 
-  * Simpler development and deployment
-  * Easier debugging and testing
-  * Lower operational complexity
+- Simpler to understand and document
+- Easier to test and reason about at a high level
+- Lower operational complexity
 
-* **Cons**:
+**Cons:**
 
-  * Limited scalability compared to microservices
-  * Potential bottleneck at the API layer as traffic grows
+- Less flexible scalability than a well-designed microservices approach
+- A single API layer could become a bottleneck as traffic grows
 
 ### Rationale
 
-For an initial system or small-to-medium scale platform, a centralized architecture provides faster development and easier maintenance.
+For an early design study or a small-to-medium scale system, a centralized architecture is often easier to explain and maintain conceptually.
 
 ---
 
 ## Relational Database vs NoSQL
 
-### Decision
+### Example Decision
 
-The system uses a relational database for storing users, products, and orders.
+A relational database is often a reasonable choice for storing users, products, and orders in an online shopping system.
 
 ### Trade-off
 
-* **Pros**:
+**Pros:**
 
-  * Strong consistency for transactions
-  * Well-suited for structured data and relationships
-  * Reliable for order and payment records
+- Strong consistency for transactional data
+- Well-suited for structured data and clear relationships
+- Easier to reason about order and payment records
 
-* **Cons**:
+**Cons:**
 
-  * Less flexible schema compared to NoSQL
-  * May require optimization for high read scalability
+- Less schema flexibility than many NoSQL systems
+- High read scalability may require additional optimization
 
 ### Rationale
 
-E-commerce systems require strong consistency for orders and payments, making relational databases a suitable choice.
+Because e-commerce systems often involve transactional records, relational databases are commonly discussed as a suitable option in high-level designs.
 
 ---
 
 ## Third-party Services vs In-house Implementation
 
-### Decision
+### Example Decision
 
-The system integrates with external services for payment, email, and delivery.
+External services can be used for capabilities such as payment processing, email notifications, and delivery support.
 
 ### Trade-off
 
-* **Pros**:
+**Pros:**
 
-  * Faster development and time-to-market
-  * Leverages specialized, reliable services
-  * Reduces internal implementation complexity
+- Faster development at a conceptual level
+- Leverages specialized external services
+- Reduces the need to design every supporting capability from scratch
 
-* **Cons**:
+**Cons:**
 
-  * Dependency on external service availability
-  * Potential latency and integration issues
-  * Less control over external systems
+- Dependency on external service availability
+- Possible latency or integration complexity
+- Less control over external systems
 
 ### Rationale
 
-Using third-party services allows the system to focus on core business logic while relying on mature solutions for supporting functionality.
+In many real-world systems, it makes sense to rely on established providers for supporting functions instead of designing everything internally.
 
 ---
 
 ## Synchronous vs Asynchronous Processing
 
-### Decision
+### Example Decision
 
-Core operations (e.g., checkout and payment) are handled synchronously, while non-critical tasks (e.g., email notifications) can be asynchronous.
+Critical operations such as checkout confirmation are often discussed as synchronous, while non-critical tasks such as email notifications can be treated as asynchronous.
 
 ### Trade-off
 
-* **Pros**:
+**Pros:**
 
-  * Immediate feedback for critical operations
-  * Better user experience during checkout
+- Immediate feedback for user-facing critical actions
+- Better user experience for operations like checkout
 
-* **Cons**:
+**Cons:**
 
-  * Increased response time for synchronous operations
-  * Requires careful design to avoid blocking
+- Synchronous operations may increase response time
+- Additional design work is needed to avoid blocking or delays
 
 ### Rationale
 
-Critical operations must provide immediate results, while non-critical tasks can be decoupled to improve system performance.
+A common design approach is to keep user-critical actions immediate while moving less critical follow-up tasks into asynchronous processing.
 
 ---
 
 ## Summary
 
-These trade-offs reflect a balance between simplicity, performance, reliability, and scalability. The design prioritizes maintainability and rapid development while allowing room for future evolution.
+These examples show how system design often involves balancing simplicity, scalability, reliability, and maintainability.
+
+For this study project, the main purpose is to practice thinking through these trade-offs and documenting them clearly.
