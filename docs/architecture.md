@@ -2,113 +2,113 @@
 
 ## Overview
 
-This document describes the high-level architecture of the online shopping system. The system is designed as a client-server application that supports both web and mobile clients, and integrates with external services such as payment, email, and delivery providers.
+This document describes a high-level architecture example for an online shopping system.
 
-The architecture emphasizes clear separation of concerns, scalability, and maintainability.
+The purpose of this document is to study how a typical e-commerce system can be organized, how major components interact, and how architecture can be documented clearly. It is written for learning purposes and does not represent a full production implementation.
 
 ---
 
 ## System Goals
 
-The system is designed to achieve the following goals:
+At a high level, an online shopping system is typically expected to support the following goals:
 
-* Support product browsing and checkout from web and mobile clients
-* Provide reliable and secure transaction processing
-* Integrate with third-party services for payment, email notifications, and delivery
-* Maintain acceptable performance under normal and peak load conditions
-* Ensure system recoverability in case of failures
+- Allow users to browse products from web and mobile clients
+- Support shopping cart and checkout workflows
+- Handle transactions in a reliable and secure way
+- Interact with external services such as payment, email, and delivery providers
+- Maintain reasonable performance under both normal and higher traffic conditions
 
 ---
 
 ## Main Components
 
-The system consists of the following core components:
+A typical online shopping system can be broken down into the following core components.
 
 ### Client Applications
 
-* **Web Application (SPA)**
-  Provides the user interface for browsing products and completing purchases.
+- **Web Application**  
+  Provides a browser-based user interface for browsing products, managing the cart, and completing purchases.
 
-* **Mobile Application**
-  Allows users to access the platform through mobile devices.
+- **Mobile Application**  
+  Allows users to access similar shopping features through mobile devices.
 
 ---
 
 ### Backend System
 
-* **API Layer**
-  Handles all client requests and contains the core business logic of the system, including:
+- **API Layer**  
+  In a typical client-server design, the API layer can act as the entry point for client requests. It may coordinate functions such as:
+  - User authentication
+  - Product browsing
+  - Shopping cart operations
+  - Checkout-related requests
 
-  * User authentication
-  * Product catalog management
-  * Shopping cart handling
-  * Checkout processing
-
-* **Database**
-  Stores persistent data, including:
-
-  * User information
-  * Product catalog
-  * Orders and transaction records
+- **Database**  
+  A database would usually store persistent business data such as:
+  - User information
+  - Product catalog data
+  - Orders and transaction records
 
 ---
 
 ### External Integrations
 
-The system integrates with the following external services:
+Many online shopping systems rely on external services. Common examples include:
 
-* **Payment Provider**
-  Responsible for secure payment processing
+- **Payment Provider**  
+  Can be used for secure payment processing
 
-* **Email Service**
-  Sends notifications such as order confirmations
+- **Email Service**  
+  Can be used to send notifications such as order confirmations
 
-* **Delivery / Logistics System**
-  Handles shipping and delivery of orders
+- **Delivery / Logistics System**  
+  May be used to support shipping and delivery updates
 
 ---
 
 ## Architectural Style
 
-The system follows a **client-server architecture** with a centralized API layer:
+One possible high-level approach is a client-server architecture with a centralized API layer.
 
-* Clients communicate with the backend via HTTP-based APIs
-* Business logic is centralized in the API layer
-* External services are accessed through integration points
+In this kind of design:
 
-This approach simplifies development and supports scalability and maintainability.
+- Clients communicate with the backend through HTTP-based APIs
+- The API layer coordinates application logic
+- External services are accessed through defined integration points
+
+This style is often easier to understand and document in an early design study.
 
 ---
 
 ## Deployment Overview
 
-The system is deployed across multiple components:
+At a conceptual level, a deployment model for this type of system might include:
 
-* API servers handle incoming requests from clients
-* The database is deployed using a primary-secondary setup to improve reliability
-* External services are accessed through secure network communication
+- API servers receiving requests from clients
+- A database instance for persistent storage
+- Secure communication with external providers
 
-This deployment model supports system recovery and fault tolerance.
+More advanced setups, such as replicated databases or multiple application servers, can also be discussed as possible ways to improve reliability and scalability.
 
 ---
 
 ## Design Principles
 
-The architecture is guided by the following principles:
+This high-level architecture study is guided by the following principles:
 
-* **Separation of concerns** – clear boundaries between components
-* **Scalability** – ability to handle increasing user traffic
-* **Reliability** – system continues to operate under failure conditions
-* **Extensibility** – new features can be added with minimal disruption
+- **Separation of concerns** – keeping different responsibilities in different parts of the system
+- **Scalability** – thinking about how the system could handle increased traffic
+- **Reliability** – considering how the system could continue operating during failures
+- **Extensibility** – allowing room for future features or changes
 
 ---
 
 ## Relationship to Diagrams
 
-The architecture described in this document is visualized using C4 diagrams:
+The ideas described in this document are also illustrated in the C4 diagrams included in this repository:
 
-* System Context Diagram – system boundaries and external actors
-* Container Diagram – internal components and interactions
-* Deployment Diagram – infrastructure and runtime environment
+- System Context Diagram – system boundaries and external actors
+- Container Diagram – major internal components and interactions
+- Deployment Diagram – a conceptual infrastructure view
 
-See [`../diagrams/`](../diagrams/) for visual representations.
+See `../diagrams/` for the related diagrams.
