@@ -1,154 +1,143 @@
-# Sample API Requests and Responses
+# API Examples
 
-This document provides example API requests and responses for the online shopping system. These examples illustrate how clients interact with the backend API during product browsing, cart management, checkout, and order tracking.
+This document provides example API requests and responses for an online shopping system.
+
+The purpose of these examples is to illustrate how a client might interact with a backend system. These APIs are not implemented and are for learning and documentation purposes only.
 
 ---
 
-## 1. Get Product List
+## Overview
+
+The examples below show how common operations in an online shopping system could be represented using REST-style APIs.
+
+They are simplified and intended to demonstrate structure rather than full implementation.
+
+---
+
+## 1. Get Products
 
 ### Request
 
 ```http
-GET /products
+GET /api/products
 ```
 
-### Response
+### Example Response
 
 ```json
 [
   {
-    "productId": "P1001",
+    "id": "p001",
     "name": "Wireless Mouse",
-    "price": 29.99,
-    "stock": 120
+    "price": 25.99
   },
   {
-    "productId": "P1002",
+    "id": "p002",
     "name": "Mechanical Keyboard",
-    "price": 79.99,
-    "stock": 45
+    "price": 79.99
   }
 ]
 ```
 
+This example shows how a client might request a list of products.
+
 ---
 
-## 2. Get Product Details
+## 2. Add Item to Cart
 
 ### Request
 
 ```http
-GET /products/P1001
+POST /api/cart
 ```
 
-### Response
+### Example Body
 
 ```json
 {
-  "productId": "P1001",
-  "name": "Wireless Mouse",
-  "description": "Ergonomic wireless mouse with USB receiver",
-  "price": 29.99,
-  "stock": 120,
-  "category": "Electronics"
-}
-```
-
----
-
-## 3. Add Item to Cart
-
-### Request
-
-```http
-POST /cart/items
-Content-Type: application/json
-```
-
-```json
-{
-  "userId": "U123",
-  "productId": "P1001",
+  "productId": "p001",
   "quantity": 2
 }
 ```
 
-### Response
+### Example Response
 
 ```json
 {
-  "message": "Item added to cart successfully",
-  "cartId": "C456",
+  "status": "success",
+  "message": "Item added to cart"
+}
+```
+
+This example illustrates how a cart update request could be structured.
+
+---
+
+## 3. Checkout
+
+### Request
+
+```http
+POST /api/checkout
+```
+
+### Example Body
+
+```json
+{
+  "userId": "u123",
+  "cartItems": [
+    {
+      "productId": "p001",
+      "quantity": 2
+    }
+  ],
+  "paymentMethod": "credit_card"
+}
+```
+
+### Example Response
+
+```json
+{
+  "orderId": "o789",
+  "status": "PAID"
+}
+```
+
+This example demonstrates how a checkout request might look in a typical system.
+
+---
+
+## 4. Get Order
+
+### Request
+
+```http
+GET /api/orders/o789
+```
+
+### Example Response
+
+```json
+{
+  "orderId": "o789",
+  "status": "SHIPPED",
   "items": [
     {
-      "productId": "P1001",
+      "productId": "p001",
       "quantity": 2
     }
   ]
 }
 ```
 
----
-
-## 4. Checkout
-
-### Request
-
-```http
-POST /checkout
-Content-Type: application/json
-```
-
-```json
-{
-  "userId": "U123",
-  "cartId": "C456",
-  "paymentMethod": "credit_card",
-  "shippingAddress": {
-    "street": "123 Main St",
-    "city": "Seattle",
-    "state": "WA",
-    "zipCode": "98101"
-  }
-}
-```
-
-### Response
-
-```json
-{
-  "orderId": "O789",
-  "status": "Confirmed",
-  "estimatedDeliveryDate": "2026-04-05"
-}
-```
-
----
-
-## 5. Get Order Status
-
-### Request
-
-```http
-GET /orders/O789
-```
-
-### Response
-
-```json
-{
-  "orderId": "O789",
-  "userId": "U123",
-  "status": "Shipped",
-  "trackingNumber": "TRK123456",
-  "estimatedDeliveryDate": "2026-04-05"
-}
-```
+This example shows how a client could retrieve order information.
 
 ---
 
 ## Notes
 
-* These examples are intended to illustrate API design and client-server interaction.
-* They do not represent a production-ready implementation.
-* Additional endpoints can be added for authentication, order cancellation, refunds, and inventory updates.
+* These APIs are examples only and are not connected to a real backend system
+* They are intended to help illustrate how REST APIs can be structured
+* Real-world systems would include authentication, validation, and error handling
