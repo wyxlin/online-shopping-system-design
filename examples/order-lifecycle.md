@@ -1,84 +1,119 @@
-# Order Lifecycle
+# Order Lifecycle Example
 
-This document describes the lifecycle of an order in the online shopping system, from creation to final delivery and completion.
+This document illustrates an example order lifecycle in an online shopping system.
+
+The goal is to show how an order might move through different states from creation to completion. This document is for learning and documentation purposes only.
+
+---
 
 ## Overview
 
-An order progresses through multiple states after a successful checkout. These states reflect the order’s processing status across payment, fulfillment, and delivery.
+In a typical online shopping system, an order may go through several states during its lifecycle.
+
+A simplified example includes:
+
+- `CREATED`
+- `PAID`
+- `PROCESSING`
+- `SHIPPED`
+- `DELIVERED`
+- `CANCELLED`
+
+The exact states can vary depending on the business model and system design.
 
 ---
 
-## Order States
+## Example State Transitions
 
-An order can move through the following states:
+### 1. CREATED
 
-1. **Created**
+This is the initial state after the user submits an order and the order record is created.
 
-   * The order is created after successful payment.
-   * Order details are stored in the database.
-
-2. **Confirmed**
-
-   * The system confirms that the order has been successfully recorded.
-   * A confirmation email is sent to the customer.
-
-3. **Processing**
-
-   * The system prepares the order for shipment.
-   * This may include packaging and internal handling.
-
-4. **Shipped**
-
-   * The order is handed over to the delivery or logistics provider.
-   * A tracking number may be generated.
-
-5. **Delivered**
-
-   * The order is delivered to the customer’s address.
-
-6. **Completed**
-
-   * The order is marked as completed after successful delivery.
-   * The system may trigger post-delivery processes (e.g., feedback request).
+At this stage:
+- The order exists in the system
+- Payment may still be pending
+- Inventory may not yet be finalized
 
 ---
 
-## State Transitions
+### 2. PAID
 
-* Created → Confirmed → Processing → Shipped → Delivered → Completed
+If payment succeeds, the order may move to the `PAID` state.
 
-Each transition represents a change in the order’s status and may trigger additional system actions.
+At this stage:
+- Payment has been confirmed
+- The order is ready for internal processing
 
 ---
 
-## Failure Scenarios
+### 3. PROCESSING
 
-### Payment Failure
+After payment confirmation, the order may move into a processing stage.
 
-* If payment fails, the order is not created and no lifecycle begins.
+This can represent activities such as:
+- Inventory confirmation
+- Picking and packing
+- Preparing the shipment
 
-### Delivery Failure
+---
 
-* If delivery fails, the order may be marked as failed or returned.
-* The system may allow re-delivery or refund processing.
+### 4. SHIPPED
 
-### System Failure
+Once the package has been handed off to a delivery provider, the order may move to `SHIPPED`.
 
-* If a failure occurs during processing, the system should be able to resume from the last known state.
+At this stage:
+- A tracking number may be available
+- The user may receive a shipping notification
+
+---
+
+### 5. DELIVERED
+
+When the package reaches the customer, the order may be marked as `DELIVERED`.
+
+This usually indicates that the main order flow has been completed.
+
+---
+
+### 6. CANCELLED
+
+In some cases, an order may move to `CANCELLED`.
+
+Possible reasons include:
+- User cancellation
+- Payment failure
+- Inventory shortage
+- Operational issues
+
+A cancelled order would typically stop moving through the normal fulfillment flow.
+
+---
+
+## Example Transition Paths
+
+Some possible lifecycle paths include:
+
+- `CREATED → PAID → PROCESSING → SHIPPED → DELIVERED`
+- `CREATED → CANCELLED`
+- `CREATED → PAID → CANCELLED`
+
+These are simplified examples used to illustrate order state changes.
 
 ---
 
 ## Design Considerations
 
-* Order state transitions should be clearly defined and stored persistently.
-* The system should support tracking and querying order status at any time.
-* External services (e.g., delivery providers) may affect state transitions.
-* The system should ensure consistency between order status and actual delivery progress.
+When documenting an order lifecycle, common design considerations may include:
+
+- Which states are needed
+- When state transitions are allowed
+- How failures or cancellations are handled
+- How users are informed of status changes
 
 ---
 
-## Future Improvements
+## Summary
 
-* Introduce event-driven architecture for order state transitions
-* Add real-time tracking updates for users
-* Support order cancellation and refund workflows
+This example provides a simplified view of how an order lifecycle can be documented in a system design project.
+
+The main purpose is to practice describing state transitions clearly at a high level.
